@@ -1,664 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PureLoft — Edited Spaces</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --base:#ECE8E1;
-    --card:#F6F4EF;
-    --ink:#24211D;
-    --ink-soft:#5A5650;
-    --brass:#A9793C;
-    --sage:#565C4C;
-    --line:#D3CDBF;
-    --radius:2px;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--base);
-    color:var(--ink);
-    font-family:'Inter', sans-serif;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
-  }
+PureLoft
+Objects
+Philosophy
+Contact
+Cart (0)
+PureLoft — Edited Spaces
+Fewer things.
+Chosen better.
+A small, tightly-edited catalog of lighting and desk objects for people who've stopped buying storage for things they don't need.
 
-  .eyebrow{
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    letter-spacing:0.18em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-  }
+Browse the edit
+Why we exist
+Before — cluttered
+Edit
+Tap the switch — this is what "curated" actually means to us.
 
-  /* ---------- NAV ---------- */
-  nav{
-    display:flex; justify-content:space-between; align-items:center;
-    padding:28px 48px;
-    position:sticky; top:0; z-index:50;
-    background:rgba(236,232,225,0.88);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  .logo{
-    font-family:'Fraunces', serif;
-    font-size:22px;
-    font-weight:500;
-    letter-spacing:0.01em;
-  }
-  .navlinks{
-    display:flex; gap:36px;
-    font-size:13px;
-    font-weight:500;
-  }
-  .navlinks a{
-    color:var(--ink); text-decoration:none;
-    position:relative;
-    padding-bottom:3px;
-  }
-  .navlinks a::after{
-    content:''; position:absolute; left:0; bottom:0;
-    width:0; height:1px; background:var(--brass);
-    transition:width .25s ease;
-  }
-  .navlinks a:hover::after{width:100%;}
-  .cart-btn{
-    font-family:'Space Mono', monospace;
-    font-size:12px;
-    border:1px solid var(--ink);
-    padding:9px 16px;
-    background:transparent;
-    cursor:pointer;
-    letter-spacing:0.04em;
-  }
-  .cart-btn:hover{background:var(--ink); color:var(--base);}
+Ships to US & Canada
+Under 12 objects in catalog, always
+No object added without a reason
+The Current Edit — 06 Objects
+Nothing here is filler.
+Every object earns its place on this list by solving one specific problem in a small space. When something better replaces it, the old one leaves the catalog.
 
-  /* ---------- HERO ---------- */
-  .hero{
-    display:grid;
-    grid-template-columns:1.1fr 1fr;
-    gap:40px;
-    padding:90px 48px 100px;
-    align-items:center;
-    max-width:1400px;
-    margin:0 auto;
-  }
-  .hero h1{
-    font-family:'Fraunces', serif;
-    font-weight:400;
-    font-size:clamp(40px, 5.2vw, 74px);
-    line-height:1.03;
-    letter-spacing:-0.01em;
-    margin:18px 0 26px;
-  }
-  .hero h1 em{
-    font-style:italic;
-    color:var(--brass);
-    font-weight:300;
-  }
-  .hero p.sub{
-    font-size:16px;
-    line-height:1.6;
-    color:var(--ink-soft);
-    max-width:440px;
-    margin-bottom:34px;
-  }
-  .hero-cta{
-    display:flex; gap:16px; align-items:center;
-  }
-  .btn-primary{
-    font-family:'Space Mono', monospace;
-    font-size:13px;
-    background:var(--ink);
-    color:var(--base);
-    border:none;
-    padding:15px 26px;
-    cursor:pointer;
-    letter-spacing:0.03em;
-    transition:background .2s ease;
-  }
-  .btn-primary:hover{background:var(--brass);}
-  .btn-ghost{
-    font-family:'Space Mono', monospace;
-    font-size:13px;
-    color:var(--ink);
-    text-decoration:none;
-    border-bottom:1px solid var(--ink);
-    padding-bottom:2px;
-  }
+LT-01 / Lighting
+Sunset Projection Lamp
+Casts one warm gradient across the room. No app, no thirty modes — one light, done well.
 
-  /* ---- signature element: the Edit Toggle scene ---- */
-  .scene-wrap{
-    position:relative;
-  }
-  .scene-label{
-    display:flex; justify-content:space-between; align-items:center;
-    margin-bottom:14px;
-  }
-  .toggle{
-    display:flex; align-items:center; gap:10px;
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-  }
-  .switch{
-    width:46px; height:24px;
-    background:var(--ink);
-    border-radius:20px;
-    position:relative;
-    cursor:pointer;
-    flex-shrink:0;
-  }
-  .switch::after{
-    content:'';
-    position:absolute;
-    top:3px; left:3px;
-    width:18px; height:18px;
-    background:var(--base);
-    border-radius:50%;
-    transition:transform .35s cubic-bezier(.65,0,.35,1);
-  }
-  .switch.on::after{transform:translateX(22px);}
-  .switch.on{background:var(--brass);}
+$26
+Add
+LT-02 / Desk
+Wireless-Charge Desk Lamp
+The lamp and the charger were always going to be the same object. Now they are.
 
-  .scene{
-    aspect-ratio:1/1;
-    border:1px solid var(--ink);
-    background:var(--card);
-    position:relative;
-    overflow:hidden;
-  }
-  .scene .grid-frame{
-    position:absolute; inset:24px;
-    border:1px solid var(--line);
-  }
-  /* clutter marks - visible by default */
-  .clutter-item{
-    position:absolute;
-    background:var(--ink-soft);
-    opacity:0.55;
-    transition:opacity .45s ease, transform .5s ease;
-  }
-  .c1{width:70px; height:8px; top:60px; left:50px; transform:rotate(-8deg);}
-  .c2{width:40px; height:40px; top:110px; left:180px; border-radius:50%; background:var(--sage); opacity:0.5;}
-  .c3{width:90px; height:12px; top:220px; left:70px; transform:rotate(4deg);}
-  .c4{width:14px; height:60px; top:150px; left:290px; background:var(--brass); opacity:0.6;}
-  .c5{width:55px; height:55px; top:270px; left:230px; transform:rotate(20deg); background:var(--ink-soft); opacity:0.4;}
-  .c6{width:100px; height:6px; top:330px; left:40px; transform:rotate(-3deg);}
-  .c7{width:30px; height:30px; top:60px; left:260px; border-radius:50%; opacity:0.35;}
+$32
+Add
+DK-01 / Desk
+Modular Desk Organizer
+Three trays, one footprint. Rearranges as your desk actually changes, not as the box assumed.
 
-  /* edited state - clean single object */
-  .edited-item{
-    position:absolute;
-    opacity:0;
-    transition:opacity .5s ease .1s;
-  }
-  .lamp-base{
-    width:2px; height:120px; background:var(--ink);
-    top:180px; left:50%; transform:translateX(-50%);
-  }
-  .lamp-shade{
-    width:64px; height:64px; border:1.5px solid var(--brass);
-    border-radius:50%;
-    top:120px; left:50%; transform:translateX(-50%);
-  }
-  .lamp-dot{
-    width:6px; height:6px; background:var(--brass); border-radius:50%;
-    top:150px; left:50%; transform:translateX(-50%);
-  }
-  .ground-line{
-    width:200px; height:1px; background:var(--ink);
-    top:300px; left:50%; transform:translateX(-50%);
-  }
+$22
+Add
+DK-02 / Desk
+Cable Routing Channel
+One channel, mounted once, hides everything behind it. The last cable product you buy.
 
-  .scene.edited .clutter-item{opacity:0; transform:scale(0.6);}
-  .scene.edited .edited-item{opacity:1;}
+$15
+Add
+HD-01 / Wall
+Silent Wall Clock, No Numerals
+Reads the room, not the minute. No ticking — meant for spaces people actually sleep in.
 
-  .scene-caption{
-    margin-top:14px;
-    font-size:13px;
-    color:var(--ink-soft);
-    font-style:italic;
-    font-family:'Fraunces', serif;
-  }
+$29
+Add
+HD-02 / Ambient
+Flameless Ambient Candle
+The flicker without the risk. For rentals, dorms, and anyone who's fallen asleep with one lit.
 
-  /* ---------- BRAND STRIP ---------- */
-  .strip{
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    padding:22px 48px;
-    display:flex; justify-content:space-between;
-    max-width:1400px; margin:0 auto;
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-    flex-wrap:wrap;
-    gap:12px;
-  }
+$18
+Add
+"We don't sell more things for your space. We sell the one thing that lets you remove three others."
+— PureLoft, on why the catalog stays small
+Most home shops grow their catalog to grow their revenue. We grow ours by replacement, not addition — a new object only joins the edit when it does its job better than what's already on the list.
 
-  /* ---------- CATALOG ---------- */
-  .catalog{
-    max-width:1400px;
-    margin:0 auto;
-    padding:110px 48px 60px;
-  }
-  .catalog-head{
-    display:flex; justify-content:space-between; align-items:flex-end;
-    margin-bottom:56px;
-    flex-wrap:wrap;
-    gap:20px;
-  }
-  .catalog-head h2{
-    font-family:'Fraunces', serif;
-    font-weight:400;
-    font-size:clamp(30px,3.4vw,44px);
-    margin-top:10px;
-    max-width:520px;
-  }
-  .catalog-head p{
-    max-width:280px;
-    font-size:14px;
-    color:var(--ink-soft);
-    line-height:1.6;
-  }
+That means fewer choices for you, and every one of them already made with intent: does it solve a real problem in a small space, and will it still look right in a year.
 
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-  }
-  .item{
-    background:var(--card);
-    padding:34px 28px 28px;
-    position:relative;
-    transition:background .25s ease;
-  }
-  .item:hover{background:var(--base);}
-  .item-code{
-    font-family:'Space Mono', monospace;
-    font-size:10px;
-    color:var(--ink-soft);
-    letter-spacing:0.06em;
-    margin-bottom:20px;
-    display:block;
-  }
-  .item-visual{
-    height:150px;
-    display:flex; align-items:center; justify-content:center;
-    margin-bottom:24px;
-    position:relative;
-  }
-  .item-visual svg{width:84px; height:84px;}
-  .item h3{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    font-size:19px;
-    margin-bottom:8px;
-  }
-  .item .desc{
-    font-size:13px;
-    color:var(--ink-soft);
-    line-height:1.55;
-    margin-bottom:20px;
-    min-height:40px;
-  }
-  .item-foot{
-    display:flex; justify-content:space-between; align-items:center;
-    border-top:1px solid var(--line);
-    padding-top:16px;
-  }
-  .price{
-    font-family:'Space Mono', monospace;
-    font-size:15px;
-  }
-  .add{
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    background:none;
-    border:none;
-    color:var(--ink);
-    cursor:pointer;
-    border-bottom:1px solid var(--ink);
-    padding-bottom:2px;
-  }
-  .add:hover{color:var(--brass); border-color:var(--brass);}
+PureLoft ships from vetted manufacturing partners to Canada and the US. No warehouse markup, no filler SKUs — just the current edit.
 
-  /* ---------- MANIFESTO ---------- */
-  .manifesto{
-    max-width:1400px; margin:0 auto;
-    padding:120px 48px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:60px;
-    align-items:center;
-  }
-  .manifesto blockquote{
-    font-family:'Fraunces', serif;
-    font-weight:400;
-    font-style:italic;
-    font-size:clamp(24px,2.6vw,34px);
-    line-height:1.35;
-    color:var(--ink);
-  }
-  .manifesto .attribution{
-    margin-top:24px;
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-  }
-  .manifesto-body p{
-    font-size:14px;
-    line-height:1.75;
-    color:var(--ink-soft);
-    margin-bottom:16px;
-  }
+PureLoft
+A tightly-edited catalog of lighting and desk objects, for spaces that don't have room for anything unconsidered.
 
-  /* ---------- FOOTER ---------- */
-  footer{
-    border-top:1px solid var(--line);
-    padding:56px 48px 40px;
-    max-width:1400px; margin:0 auto;
-  }
-  .footer-grid{
-    display:grid;
-    grid-template-columns:1.4fr 1fr 1fr 1fr;
-    gap:40px;
-    margin-bottom:48px;
-  }
-  footer h4{
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-    margin-bottom:16px;
-  }
-  footer ul{list-style:none;}
-  footer ul li{margin-bottom:10px; font-size:13px;}
-  footer a{color:var(--ink); text-decoration:none;}
-  footer a:hover{color:var(--brass);}
-  .footer-logo{
-    font-family:'Fraunces', serif;
-    font-size:24px;
-    margin-bottom:14px;
-  }
-  .footer-tag{
-    font-size:13px;
-    color:var(--ink-soft);
-    max-width:260px;
-    line-height:1.6;
-  }
-  .footer-bottom{
-    border-top:1px solid var(--line);
-    padding-top:24px;
-    display:flex; justify-content:space-between;
-    font-family:'Space Mono', monospace;
-    font-size:10px;
-    color:var(--ink-soft);
-    letter-spacing:0.05em;
-    flex-wrap:wrap;
-    gap:10px;
-  }
-
-  @media (max-width: 860px){
-    nav{padding:20px 24px;}
-    .navlinks{display:none;}
-    .hero{grid-template-columns:1fr; padding:50px 24px 60px;}
-    .strip{padding:18px 24px; font-size:10px;}
-    .catalog{padding:70px 24px 40px;}
-    .grid{grid-template-columns:1fr 1fr;}
-    .manifesto{grid-template-columns:1fr; padding:70px 24px;}
-    .footer-grid{grid-template-columns:1fr 1fr; gap:28px;}
-  }
-  @media (max-width: 520px){
-    .grid{grid-template-columns:1fr;}
-    .footer-grid{grid-template-columns:1fr;}
-  }
-</style>
-</head>
-<body>
-
-<nav>
-  <div class="logo">PureLoft</div>
-  <div class="navlinks">
-    <a href="#catalog">Objects</a>
-    <a href="#manifesto">Philosophy</a>
-    <a href="#footer">Contact</a>
-  </div>
-  <button class="cart-btn">Cart (0)</button>
-</nav>
-
-<section class="hero">
-  <div>
-    <span class="eyebrow">PureLoft — Edited Spaces</span>
-    <h1>Fewer things.<br><em>Chosen</em> better.</h1>
-    <p class="sub">A small, tightly-edited catalog of lighting and desk objects for people who've stopped buying storage for things they don't need.</p>
-    <div class="hero-cta">
-      <button class="btn-primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Browse the edit</button>
-      <a href="#manifesto" class="btn-ghost">Why we exist</a>
-    </div>
-  </div>
-
-  <div class="scene-wrap">
-    <div class="scene-label">
-      <span class="eyebrow" id="sceneState">Before — cluttered</span>
-      <div class="toggle">
-        <span>Edit</span>
-        <div class="switch" id="sceneSwitch" onclick="toggleScene()"></div>
-      </div>
-    </div>
-    <div class="scene" id="scene">
-      <div class="grid-frame"></div>
-      <div class="clutter-item c1"></div>
-      <div class="clutter-item c2"></div>
-      <div class="clutter-item c3"></div>
-      <div class="clutter-item c4"></div>
-      <div class="clutter-item c5"></div>
-      <div class="clutter-item c6"></div>
-      <div class="clutter-item c7"></div>
-
-      <div class="edited-item lamp-shade"></div>
-      <div class="edited-item lamp-base"></div>
-      <div class="edited-item lamp-dot"></div>
-      <div class="edited-item ground-line"></div>
-    </div>
-    <p class="scene-caption">Tap the switch — this is what "curated" actually means to us.</p>
-  </div>
-</section>
-
-<div class="strip">
-  <span>Ships to US &amp; Canada</span>
-  <span>Under 12 objects in catalog, always</span>
-  <span>No object added without a reason</span>
-</div>
-
-<section class="catalog" id="catalog">
-  <div class="catalog-head">
-    <div>
-      <span class="eyebrow">The Current Edit — 06 Objects</span>
-      <h2>Nothing here is filler.</h2>
-    </div>
-    <p>Every object earns its place on this list by solving one specific problem in a small space. When something better replaces it, the old one leaves the catalog.</p>
-  </div>
-
-  <div class="grid">
-
-    <div class="item">
-      <span class="item-code">LT-01 / Lighting</span>
-      <div class="item-visual">
-        <svg viewBox="0 0 100 100" fill="none" stroke="#24211D" stroke-width="1.4">
-          <circle cx="50" cy="38" r="26" stroke="#A9793C"/>
-          <line x1="50" y1="64" x2="50" y2="92"/>
-          <circle cx="50" cy="38" r="4" fill="#A9793C" stroke="none"/>
-        </svg>
-      </div>
-      <h3>Sunset Projection Lamp</h3>
-      <p class="desc">Casts one warm gradient across the room. No app, no thirty modes — one light, done well.</p>
-      <div class="item-foot">
-        <span class="price">$26</span>
-        <button class="add">Add</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <span class="item-code">LT-02 / Desk</span>
-      <div class="item-visual">
-        <svg viewBox="0 0 100 100" fill="none" stroke="#24211D" stroke-width="1.4">
-          <rect x="30" y="20" width="40" height="8" rx="1"/>
-          <line x1="50" y1="28" x2="50" y2="70"/>
-          <rect x="20" y="70" width="60" height="6" rx="1" fill="#565C4C" stroke="none"/>
-          <circle cx="50" cy="80" r="3" fill="#A9793C" stroke="none"/>
-        </svg>
-      </div>
-      <h3>Wireless-Charge Desk Lamp</h3>
-      <p class="desc">The lamp and the charger were always going to be the same object. Now they are.</p>
-      <div class="item-foot">
-        <span class="price">$32</span>
-        <button class="add">Add</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <span class="item-code">DK-01 / Desk</span>
-      <div class="item-visual">
-        <svg viewBox="0 0 100 100" fill="none" stroke="#24211D" stroke-width="1.4">
-          <rect x="22" y="35" width="18" height="35" rx="1"/>
-          <rect x="42" y="25" width="18" height="45" rx="1" stroke="#A9793C"/>
-          <rect x="62" y="45" width="16" height="25" rx="1"/>
-        </svg>
-      </div>
-      <h3>Modular Desk Organizer</h3>
-      <p class="desc">Three trays, one footprint. Rearranges as your desk actually changes, not as the box assumed.</p>
-      <div class="item-foot">
-        <span class="price">$22</span>
-        <button class="add">Add</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <span class="item-code">DK-02 / Desk</span>
-      <div class="item-visual">
-        <svg viewBox="0 0 100 100" fill="none" stroke="#24211D" stroke-width="1.4">
-          <path d="M25 30 Q50 20 75 30 Q60 50 75 70 Q50 80 25 70 Q40 50 25 30 Z" stroke="#565C4C"/>
-        </svg>
-      </div>
-      <h3>Cable Routing Channel</h3>
-      <p class="desc">One channel, mounted once, hides everything behind it. The last cable product you buy.</p>
-      <div class="item-foot">
-        <span class="price">$15</span>
-        <button class="add">Add</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <span class="item-code">HD-01 / Wall</span>
-      <div class="item-visual">
-        <svg viewBox="0 0 100 100" fill="none" stroke="#24211D" stroke-width="1.4">
-          <circle cx="50" cy="50" r="28" stroke="#A9793C"/>
-          <line x1="50" y1="50" x2="50" y2="32"/>
-          <line x1="50" y1="50" x2="62" y2="55"/>
-        </svg>
-      </div>
-      <h3>Silent Wall Clock, No Numerals</h3>
-      <p class="desc">Reads the room, not the minute. No ticking — meant for spaces people actually sleep in.</p>
-      <div class="item-foot">
-        <span class="price">$29</span>
-        <button class="add">Add</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <span class="item-code">HD-02 / Ambient</span>
-      <div class="item-visual">
-        <svg viewBox="0 0 100 100" fill="none" stroke="#24211D" stroke-width="1.4">
-          <path d="M50 22 C60 40 68 48 68 60 A18 18 0 1 1 32 60 C32 48 40 40 50 22 Z" stroke="#A9793C"/>
-        </svg>
-      </div>
-      <h3>Flameless Ambient Candle</h3>
-      <p class="desc">The flicker without the risk. For rentals, dorms, and anyone who's fallen asleep with one lit.</p>
-      <div class="item-foot">
-        <span class="price">$18</span>
-        <button class="add">Add</button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section class="manifesto" id="manifesto">
-  <div>
-    <blockquote>"We don't sell more things for your space. We sell the one thing that lets you remove three others."</blockquote>
-    <div class="attribution">— PureLoft, on why the catalog stays small</div>
-  </div>
-  <div class="manifesto-body">
-    <p>Most home shops grow their catalog to grow their revenue. We grow ours by replacement, not addition — a new object only joins the edit when it does its job better than what's already on the list.</p>
-    <p>That means fewer choices for you, and every one of them already made with intent: does it solve a real problem in a small space, and will it still look right in a year.</p>
-    <p>PureLoft ships from vetted manufacturing partners to Canada and the US. No warehouse markup, no filler SKUs — just the current edit.</p>
-  </div>
-</section>
-
-<footer id="footer">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-logo">PureLoft</div>
-      <p class="footer-tag">A tightly-edited catalog of lighting and desk objects, for spaces that don't have room for anything unconsidered.</p>
-    </div>
-    <div>
-      <h4>Shop</h4>
-      <ul>
-        <li><a href="#catalog">The Current Edit</a></li>
-        <li><a href="#">Lighting</a></li>
-        <li><a href="#">Desk</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Studio</h4>
-      <ul>
-        <li><a href="#manifesto">Philosophy</a></li>
-        <li><a href="#">Shipping — US &amp; Canada</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Follow</h4>
-      <ul>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">TikTok</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 PureLoft. All objects final until replaced.</span>
-    <span>Made for small spaces, shipped across North America.</span>
-  </div>
-</footer>
-
-<script>
-  function toggleScene(){
-    const scene = document.getElementById('scene');
-    const sw = document.getElementById('sceneSwitch');
-    const label = document.getElementById('sceneState');
-    scene.classList.toggle('edited');
-    sw.classList.toggle('on');
-    label.textContent = scene.classList.contains('edited') ? 'After — edited' : 'Before — cluttered';
-  }
-</script>
-
-</body>
-</html>
+Shop
+The Current Edit
+Lighting
+Desk
+Studio
+Philosophy
+Shipping — US & Canada
+Contact
+Follow
+Instagram
+TikTok
+© 2026 PureLoft. All objects final until replaced.
+Made for small spaces, shipped across North America.
